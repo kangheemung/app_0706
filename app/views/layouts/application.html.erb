@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>App0706</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <% if current_user.present? %> 
+      <p><%= current_user.name%>様</p>
+     <%= link_to "top", root_path %>
+     <%= link_to  "mypage", users_path(current_user) %>
+     <p><%= link_to "logout",sessions_delete_path,method: :delete %></p>
+    <% else %> 
+     <%= link_to "top", root_path %>
+     <p><%= link_to "login",sessions_new_path %></p>
+     <p><%= link_to  "sign_up",users_new_path %></p>
+    <% end %>
+    <%#=%>
+    <%= yield %>
+  </body>
+</html>
